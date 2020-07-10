@@ -1,0 +1,549 @@
+<html>
+<head>
+<title>rootdir - scan-build results</title>
+<link type="text/css" rel="stylesheet" href="scanview.css"/>
+<script src="sorttable.js"></script>
+<script language='javascript' type="text/javascript">
+function SetDisplay(RowClass, DisplayVal)
+{
+  var Rows = document.getElementsByTagName("tr");
+  for ( var i = 0 ; i < Rows.length; ++i ) {
+    if (Rows[i].className == RowClass) {
+      Rows[i].style.display = DisplayVal;
+    }
+  }
+}
+
+function CopyCheckedStateToCheckButtons(SummaryCheckButton) {
+  var Inputs = document.getElementsByTagName("input");
+  for ( var i = 0 ; i < Inputs.length; ++i ) {
+    if (Inputs[i].type == "checkbox") {
+      if(Inputs[i] != SummaryCheckButton) {
+        Inputs[i].checked = SummaryCheckButton.checked;
+        Inputs[i].onclick();
+      }
+    }
+  }
+}
+
+function returnObjById( id ) {
+    if (document.getElementById)
+        var returnVar = document.getElementById(id);
+    else if (document.all)
+        var returnVar = document.all[id];
+    else if (document.layers)
+        var returnVar = document.layers[id];
+    return returnVar;
+}
+
+var NumUnchecked = 0;
+
+function ToggleDisplay(CheckButton, ClassName) {
+  if (CheckButton.checked) {
+    SetDisplay(ClassName, "");
+    if (--NumUnchecked == 0) {
+      returnObjById("AllBugsCheck").checked = true;
+    }
+  }
+  else {
+    SetDisplay(ClassName, "none");
+    NumUnchecked++;
+    returnObjById("AllBugsCheck").checked = false;
+  }
+}
+</script>
+<!-- SUMMARYENDHEAD -->
+</head>
+<body>
+<h1>rootdir - scan-build results</h1>
+
+<table>
+<tr><th>User:</th><td>root@ed9820e40302</td></tr>
+<tr><th>Working Directory:</th><td>/rootdir</td></tr>
+<tr><th>Command Line:</th><td>make -j 2</td></tr>
+<tr><th>Clang Version:</th><td>clang version 9.0.1 (Fedora 9.0.1-2.fc31)
+</td></tr>
+<tr><th>Date:</th><td>Sun Jun 28 11:01:58 2020</td></tr>
+</table>
+<h2>Bug Summary</h2><table>
+<thead><tr><td>Bug Type</td><td>Quantity</td><td class="sorttable_nosort">Display?</td></tr></thead>
+<tr style="font-weight:bold"><td class="SUMM_DESC">All Bugs</td><td class="Q">146</td><td><center><input type="checkbox" id="AllBugsCheck" onClick="CopyCheckedStateToCheckButtons(this);" checked/></center></td></tr>
+<tr><th>API</th><th colspan=2></th></tr>
+<tr><td class="SUMM_DESC">Argument with 'nonnull' attribute passed null</td><td class="Q">10</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_api_argument_with_nonnull_attribute_passed_null');" checked/></center></td></tr>
+<tr><th>Dead code</th><th colspan=2></th></tr>
+<tr><td class="SUMM_DESC">Unreachable code</td><td class="Q">13</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_dead_code_unreachable_code');" checked/></center></td></tr>
+<tr><th>Dead store</th><th colspan=2></th></tr>
+<tr><td class="SUMM_DESC">Dead assignment</td><td class="Q">28</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_dead_store_dead_assignment');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Dead increment</td><td class="Q">6</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_dead_store_dead_increment');" checked/></center></td></tr>
+<tr><th>Logic error</th><th colspan=2></th></tr>
+<tr><td class="SUMM_DESC">Cast from non-struct type to struct type</td><td class="Q">6</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_logic_error_cast_from_non-struct_type_to_struct_type');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Cast region with wrong size</td><td class="Q">2</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_logic_error_cast_region_with_wrong_size');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Dereference of null pointer</td><td class="Q">17</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_logic_error_dereference_of_null_pointer');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Out-of-bound access</td><td class="Q">20</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_logic_error_out-of-bound_access');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Potential unintended use of sizeof() on pointer type</td><td class="Q">2</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_logic_error_potential_unintended_use_of_sizeof_on_pointer_type');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Result of operation is garbage or undefined</td><td class="Q">14</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_logic_error_result_of_operation_is_garbage_or_undefined');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Uninitialized argument value</td><td class="Q">4</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_logic_error_uninitialized_argument_value');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Use fixed address</td><td class="Q">6</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_logic_error_use_fixed_address');" checked/></center></td></tr>
+<tr><th>Memory error</th><th colspan=2></th></tr>
+<tr><td class="SUMM_DESC">Memory leak</td><td class="Q">4</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_memory_error_memory_leak');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Use of zero allocated</td><td class="Q">4</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_memory_error_use_of_zero_allocated');" checked/></center></td></tr>
+<tr><th>Security</th><th colspan=2></th></tr>
+<tr><td class="SUMM_DESC">Potential insecure memory buffer bounds restriction in call 'strcat'</td><td class="Q">2</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcat_');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Potential insecure memory buffer bounds restriction in call 'strcpy'</td><td class="Q">8</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcpy_');" checked/></center></td></tr>
+</table>
+<h2>Reports</h2>
+
+<table class="sortable" style="table-layout:automatic">
+<thead><tr>
+  <td>Bug Group</td>
+  <td class="sorttable_sorted">Bug Type<span id="sorttable_sortfwdind">&nbsp;&#x25BE;</span></td>
+  <td>File</td>
+  <td>Function/Method</td>
+  <td class="Q">Line</td>
+  <td class="Q">Path Length</td>
+  <td class="sorttable_nosort"></td>
+  <!-- REPORTBUGCOL -->
+</tr></thead>
+<tbody>
+<tr class="bt_api_argument_with_nonnull_attribute_passed_null"><td class="DESC">API</td><td class="DESC">Argument with 'nonnull' attribute passed null</td><td>backend/dvi/mdvi-lib/util.c</td><td class="DESC">mdvi_build_path_from_cwd</td><td class="Q">339</td><td class="Q">8</td><td><a href="report-9abe44.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-9abe44.html" -->
+</tr>
+<tr class="bt_api_argument_with_nonnull_attribute_passed_null"><td class="DESC">API</td><td class="DESC">Argument with 'nonnull' attribute passed null</td><td>backend/dvi/mdvi-lib/bitmap.c</td><td class="DESC">bitmap_convert_lsb8</td><td class="Q">147</td><td class="Q">10</td><td><a href="report-2b45fc.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-2b45fc.html" -->
+</tr>
+<tr class="bt_api_argument_with_nonnull_attribute_passed_null"><td class="DESC">API</td><td class="DESC">Argument with 'nonnull' attribute passed null</td><td>backend/dvi/mdvi-lib/bitmap.c</td><td class="DESC">bitmap_convert_lsb8</td><td class="Q">147</td><td class="Q">10</td><td><a href="report-08f33a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-08f33a.html" -->
+</tr>
+<tr class="bt_api_argument_with_nonnull_attribute_passed_null"><td class="DESC">API</td><td class="DESC">Argument with 'nonnull' attribute passed null</td><td>backend/dvi/mdvi-lib/common.c</td><td class="DESC">buff_add</td><td class="Q">142</td><td class="Q">7</td><td><a href="report-ff0567.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-ff0567.html" -->
+</tr>
+<tr class="bt_api_argument_with_nonnull_attribute_passed_null"><td class="DESC">API</td><td class="DESC">Argument with 'nonnull' attribute passed null</td><td>backend/dvi/mdvi-lib/util.c</td><td class="DESC">mdvi_build_path_from_cwd</td><td class="Q">339</td><td class="Q">8</td><td><a href="report-2890b4.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-2890b4.html" -->
+</tr>
+<tr class="bt_api_argument_with_nonnull_attribute_passed_null"><td class="DESC">API</td><td class="DESC">Argument with 'nonnull' attribute passed null</td><td>backend/dvi/mdvi-lib/bitmap.c</td><td class="DESC">bitmap_convert_msb8</td><td class="Q">187</td><td class="Q">12</td><td><a href="report-b1257e.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b1257e.html" -->
+</tr>
+<tr class="bt_api_argument_with_nonnull_attribute_passed_null"><td class="DESC">API</td><td class="DESC">Argument with 'nonnull' attribute passed null</td><td>backend/dvi/mdvi-lib/bitmap.c</td><td class="DESC">bitmap_copy</td><td class="Q">201</td><td class="Q">5</td><td><a href="report-2881d0.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-2881d0.html" -->
+</tr>
+<tr class="bt_api_argument_with_nonnull_attribute_passed_null"><td class="DESC">API</td><td class="DESC">Argument with 'nonnull' attribute passed null</td><td>backend/dvi/mdvi-lib/bitmap.c</td><td class="DESC">bitmap_copy</td><td class="Q">201</td><td class="Q">5</td><td><a href="report-c0602f.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-c0602f.html" -->
+</tr>
+<tr class="bt_api_argument_with_nonnull_attribute_passed_null"><td class="DESC">API</td><td class="DESC">Argument with 'nonnull' attribute passed null</td><td>backend/dvi/mdvi-lib/bitmap.c</td><td class="DESC">bitmap_convert_msb8</td><td class="Q">187</td><td class="Q">12</td><td><a href="report-782758.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-782758.html" -->
+</tr>
+<tr class="bt_api_argument_with_nonnull_attribute_passed_null"><td class="DESC">API</td><td class="DESC">Argument with 'nonnull' attribute passed null</td><td>backend/dvi/mdvi-lib/common.c</td><td class="DESC">buff_add</td><td class="Q">142</td><td class="Q">7</td><td><a href="report-8fe5b7.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-8fe5b7.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>cut-n-paste/smclient/libegg/eggsmclient-xsmp.c</td><td class="DESC">ptrarray_prop</td><td class="Q">1232</td><td class="Q">1</td><td><a href="report-e1e9a8.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-e1e9a8.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>shell/ev-bookmarks.c</td><td class="DESC">ev_bookmarks_constructed</td><td class="Q">131</td><td class="Q">1</td><td><a href="report-18d1dc.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-18d1dc.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>cut-n-paste/smclient/libegg/eggsmclient-xsmp.c</td><td class="DESC">ptrarray_prop</td><td class="Q">1232</td><td class="Q">1</td><td><a href="report-c9f524.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-c9f524.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>cut-n-paste/smclient/libegg/eggsmclient-xsmp.c</td><td class="DESC">array_prop</td><td class="Q">1199</td><td class="Q">1</td><td><a href="report-46f0b7.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-46f0b7.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>cut-n-paste/smclient/libegg/eggsmclient-xsmp.c</td><td class="DESC">array_prop</td><td class="Q">1199</td><td class="Q">1</td><td><a href="report-b7a7c2.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b7a7c2.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>shell/ev-bookmarks.c</td><td class="DESC">ev_bookmarks_save</td><td class="Q">204</td><td class="Q">1</td><td><a href="report-d790e6.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-d790e6.html" -->
+</tr>
+<tr class="bt_logic_error_cast_region_with_wrong_size"><td class="DESC">Logic error</td><td class="DESC">Cast region with wrong size</td><td>backend/epub/epub-document.c</td><td class="DESC">setup_document_content_list</td><td class="Q">1013</td><td class="Q">21</td><td><a href="report-b24613.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b24613.html" -->
+</tr>
+<tr class="bt_logic_error_cast_region_with_wrong_size"><td class="DESC">Logic error</td><td class="DESC">Cast region with wrong size</td><td>backend/epub/epub-document.c</td><td class="DESC">setup_document_content_list</td><td class="Q">1013</td><td class="Q">21</td><td><a href="report-9fa4ff.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-9fa4ff.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/dvi/mdvi-lib/bitmap.c</td><td class="DESC">bitmap_print</td><td class="Q">253</td><td class="Q">1</td><td><a href="report-a6b97a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-a6b97a.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>cut-n-paste/toolbar-editor/egg-toolbar-editor.c</td><td class="DESC">update_editor_sheet</td><td class="Q">621</td><td class="Q">1</td><td><a href="report-7e3556.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-7e3556.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/dvi/mdvi-lib/tfmfile.c</td><td class="DESC">ofm1_load_file</td><td class="Q">411</td><td class="Q">1</td><td><a href="report-8461c7.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-8461c7.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/dvi/mdvi-lib/pagesel.c</td><td class="DESC">mdvi_parse_range</td><td class="Q">61</td><td class="Q">1</td><td><a href="report-f3d069.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-f3d069.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/dvi/mdvi-lib/pagesel.c</td><td class="DESC">mdvi_parse_range</td><td class="Q">60</td><td class="Q">1</td><td><a href="report-09514b.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-09514b.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/dvi/mdvi-lib/util.c</td><td class="DESC">unit2pix_factor</td><td class="Q">365</td><td class="Q">1</td><td><a href="report-f6fcf5.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-f6fcf5.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/dvi/mdvi-lib/tfmfile.c</td><td class="DESC">ofm1_load_file</td><td class="Q">411</td><td class="Q">1</td><td><a href="report-b3c10d.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b3c10d.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/epub/minizip/unzip.c</td><td class="DESC">unzOpenCurrentFile3</td><td class="Q">1532</td><td class="Q">1</td><td><a href="report-16d32f.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-16d32f.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/dvi/mdvi-lib/pagesel.c</td><td class="DESC">mdvi_parse_range</td><td class="Q">59</td><td class="Q">1</td><td><a href="report-71d4b9.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-71d4b9.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/dvi/mdvi-lib/tfmfile.c</td><td class="DESC">ofm1_load_file</td><td class="Q">336</td><td class="Q">1</td><td><a href="report-93fb7d.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-93fb7d.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/dvi/mdvi-lib/tfmfile.c</td><td class="DESC">ofm_load_file</td><td class="Q">510</td><td class="Q">1</td><td><a href="report-946d28.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-946d28.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/dvi/mdvi-lib/tfmfile.c</td><td class="DESC">ofm_load_file</td><td class="Q">453</td><td class="Q">1</td><td><a href="report-41568a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-41568a.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/dvi/mdvi-lib/pagesel.c</td><td class="DESC">mdvi_parse_range</td><td class="Q">59</td><td class="Q">1</td><td><a href="report-197d9e.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-197d9e.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>cut-n-paste/toolbar-editor/egg-toolbar-editor.c</td><td class="DESC">update_editor_sheet</td><td class="Q">621</td><td class="Q">1</td><td><a href="report-edd8c1.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-edd8c1.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>cut-n-paste/toolbar-editor/egg-toolbars-model.c</td><td class="DESC">egg_toolbars_model_to_xml</td><td class="Q">101</td><td class="Q">1</td><td><a href="report-beeb3a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-beeb3a.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/djvu/djvu-links.c</td><td class="DESC">get_djvu_hyperlink_mapping</td><td class="Q">329</td><td class="Q">1</td><td><a href="report-1d4110.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-1d4110.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/dvi/mdvi-lib/tfmfile.c</td><td class="DESC">ofm_load_file</td><td class="Q">510</td><td class="Q">1</td><td><a href="report-65662c.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-65662c.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/epub/minizip/unzip.c</td><td class="DESC">unzOpenCurrentFile3</td><td class="Q">1532</td><td class="Q">1</td><td><a href="report-06aed5.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-06aed5.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/djvu/djvu-links.c</td><td class="DESC">get_djvu_hyperlink_mapping</td><td class="Q">329</td><td class="Q">1</td><td><a href="report-aac63e.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-aac63e.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/dvi/mdvi-lib/pagesel.c</td><td class="DESC">mdvi_parse_range</td><td class="Q">60</td><td class="Q">1</td><td><a href="report-eebd3b.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-eebd3b.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>cut-n-paste/toolbar-editor/egg-toolbars-model.c</td><td class="DESC">egg_toolbars_model_to_xml</td><td class="Q">101</td><td class="Q">1</td><td><a href="report-318084.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-318084.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/dvi/mdvi-lib/util.c</td><td class="DESC">unit2pix_factor</td><td class="Q">365</td><td class="Q">1</td><td><a href="report-c729d4.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-c729d4.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/dvi/mdvi-lib/tfmfile.c</td><td class="DESC">ofm_load_file</td><td class="Q">453</td><td class="Q">1</td><td><a href="report-3b16c3.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-3b16c3.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/dvi/mdvi-lib/pagesel.c</td><td class="DESC">mdvi_parse_range</td><td class="Q">61</td><td class="Q">1</td><td><a href="report-d89013.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-d89013.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/dvi/mdvi-lib/bitmap.c</td><td class="DESC">bitmap_print</td><td class="Q">253</td><td class="Q">1</td><td><a href="report-a001c2.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-a001c2.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/pdf/ev-poppler.cc</td><td class="DESC">pdf_document_annotations_add_annotation</td><td class="Q">3009</td><td class="Q">1</td><td><a href="report-4017fe.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-4017fe.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/pdf/ev-poppler.cc</td><td class="DESC">pdf_document_annotations_add_annotation</td><td class="Q">3009</td><td class="Q">1</td><td><a href="report-ffb0eb.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-ffb0eb.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/dvi/mdvi-lib/tfmfile.c</td><td class="DESC">ofm1_load_file</td><td class="Q">336</td><td class="Q">1</td><td><a href="report-cb31f6.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-cb31f6.html" -->
+</tr>
+<tr class="bt_dead_store_dead_increment"><td class="DESC">Dead store</td><td class="DESC">Dead increment</td><td>backend/epub/minizip/unzip.c</td><td class="DESC">unz64local_GetCurrentFileInfoInternal</td><td class="Q">1096</td><td class="Q">1</td><td><a href="report-a0ef4c.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-a0ef4c.html" -->
+</tr>
+<tr class="bt_dead_store_dead_increment"><td class="DESC">Dead store</td><td class="DESC">Dead increment</td><td>backend/dvi/mdvi-lib/tfmfile.c</td><td class="DESC">tfm_load_file</td><td class="Q">250</td><td class="Q">1</td><td><a href="report-cc4e21.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-cc4e21.html" -->
+</tr>
+<tr class="bt_dead_store_dead_increment"><td class="DESC">Dead store</td><td class="DESC">Dead increment</td><td>backend/epub/minizip/unzip.c</td><td class="DESC">unz64local_GetCurrentFileInfoInternal</td><td class="Q">1096</td><td class="Q">1</td><td><a href="report-bd9390.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-bd9390.html" -->
+</tr>
+<tr class="bt_dead_store_dead_increment"><td class="DESC">Dead store</td><td class="DESC">Dead increment</td><td>backend/epub/minizip/unzip.c</td><td class="DESC">unz64local_GetCurrentFileInfoInternal</td><td class="Q">1099</td><td class="Q">1</td><td><a href="report-8815f7.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-8815f7.html" -->
+</tr>
+<tr class="bt_dead_store_dead_increment"><td class="DESC">Dead store</td><td class="DESC">Dead increment</td><td>backend/dvi/mdvi-lib/tfmfile.c</td><td class="DESC">tfm_load_file</td><td class="Q">250</td><td class="Q">1</td><td><a href="report-830d53.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-830d53.html" -->
+</tr>
+<tr class="bt_dead_store_dead_increment"><td class="DESC">Dead store</td><td class="DESC">Dead increment</td><td>backend/epub/minizip/unzip.c</td><td class="DESC">unz64local_GetCurrentFileInfoInternal</td><td class="Q">1099</td><td class="Q">1</td><td><a href="report-4064a5.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-4064a5.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>backend/epub/epub-document.c</td><td class="DESC">xml_parse_children_of_node</td><td class="Q">544</td><td class="Q">18</td><td><a href="report-07c603.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-07c603.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>libview/ev-pixbuf-cache.c</td><td class="DESC">add_job_if_needed</td><td class="Q">708</td><td class="Q">87</td><td><a href="report-9e6764.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-9e6764.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>backend/dvi/mdvi-lib/tfm.c</td><td class="DESC">get_tfm_chars</td><td class="Q">112</td><td class="Q">18</td><td><a href="report-9fa1e9.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-9fa1e9.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>backend/epub/epub-document.c</td><td class="DESC">add_mathjax_script_node_to_file</td><td class="Q">1632</td><td class="Q">23</td><td><a href="report-904664.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-904664.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>backend/dvi/mdvi-lib/tfm.c</td><td class="DESC">get_tfm_chars</td><td class="Q">112</td><td class="Q">18</td><td><a href="report-c04f7a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-c04f7a.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>libview/ev-pixbuf-cache.c</td><td class="DESC">add_job_if_needed</td><td class="Q">708</td><td class="Q">87</td><td><a href="report-cd2b9f.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-cd2b9f.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>backend/epub/epub-document.c</td><td class="DESC">setup_document_index</td><td class="Q">1261</td><td class="Q">14</td><td><a href="report-debafd.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-debafd.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>libview/ev-web-view.c</td><td class="DESC">ev_web_view_change_page</td><td class="Q">171</td><td class="Q">45</td><td><a href="report-bc8b8a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-bc8b8a.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>backend/epub/epub-document.c</td><td class="DESC">xml_parse_children_of_node</td><td class="Q">544</td><td class="Q">18</td><td><a href="report-b4e5fb.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b4e5fb.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>backend/dvi/mdvi-lib/bitmap.c</td><td class="DESC">bitmap_convert_msb8</td><td class="Q">181</td><td class="Q">12</td><td><a href="report-a7a7ca.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-a7a7ca.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>shell/ev-daemon.c</td><td class="DESC">document_loaded_cb</td><td class="Q">212</td><td class="Q">3</td><td><a href="report-ada64a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-ada64a.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>backend/dvi/mdvi-lib/bitmap.c</td><td class="DESC">mdvi_shrink_glyph</td><td class="Q">900</td><td class="Q">31</td><td><a href="report-424699.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-424699.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>backend/dvi/mdvi-lib/bitmap.c</td><td class="DESC">mdvi_shrink_glyph</td><td class="Q">900</td><td class="Q">31</td><td><a href="report-912b69.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-912b69.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>backend/epub/epub-document.c</td><td class="DESC">setup_document_index</td><td class="Q">1261</td><td class="Q">14</td><td><a href="report-0a817a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-0a817a.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>libview/ev-web-view.c</td><td class="DESC">ev_web_view_change_page</td><td class="Q">171</td><td class="Q">45</td><td><a href="report-9e459f.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-9e459f.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>backend/epub/epub-document.c</td><td class="DESC">add_mathjax_script_node_to_file</td><td class="Q">1632</td><td class="Q">23</td><td><a href="report-22e18e.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-22e18e.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>backend/dvi/mdvi-lib/bitmap.c</td><td class="DESC">bitmap_convert_msb8</td><td class="Q">181</td><td class="Q">12</td><td><a href="report-dbc4ae.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-dbc4ae.html" -->
+</tr>
+<tr class="bt_memory_error_memory_leak"><td class="DESC">Memory error</td><td class="DESC">Memory leak</td><td>backend/dvi/mdvi-lib/util.c</td><td class="DESC">mdvi_build_path_from_cwd</td><td class="Q">339</td><td class="Q">11</td><td><a href="report-3ee6d8.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-3ee6d8.html" -->
+</tr>
+<tr class="bt_memory_error_memory_leak"><td class="DESC">Memory error</td><td class="DESC">Memory leak</td><td>backend/epub/epub-document.c</td><td class="DESC">get_child_list</td><td class="Q">1181</td><td class="Q">26</td><td><a href="report-15f19a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-15f19a.html" -->
+</tr>
+<tr class="bt_memory_error_memory_leak"><td class="DESC">Memory error</td><td class="DESC">Memory leak</td><td>backend/epub/epub-document.c</td><td class="DESC">get_child_list</td><td class="Q">1181</td><td class="Q">26</td><td><a href="report-fc54ba.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-fc54ba.html" -->
+</tr>
+<tr class="bt_memory_error_memory_leak"><td class="DESC">Memory error</td><td class="DESC">Memory leak</td><td>backend/dvi/mdvi-lib/util.c</td><td class="DESC">mdvi_build_path_from_cwd</td><td class="Q">339</td><td class="Q">11</td><td><a href="report-9cf63a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-9cf63a.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>backend/dvi/mdvi-lib/tfmfile.c</td><td class="DESC">ofm1_load_file</td><td class="Q">349</td><td class="Q">27</td><td><a href="report-c6a23d.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-c6a23d.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>backend/dvi/mdvi-lib/dviread.c</td><td class="DESC">mdvi_run_macro</td><td class="Q">981</td><td class="Q">14</td><td><a href="report-35535b.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-35535b.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>backend/dvi/mdvi-lib/tfmfile.c</td><td class="DESC">tfm_load_file</td><td class="Q">247</td><td class="Q">39</td><td><a href="report-4e2742.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-4e2742.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>libview/ev-view.c</td><td class="DESC">ev_view_build_height_to_page_cache</td><td class="Q">379</td><td class="Q">70</td><td><a href="report-ace45f.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-ace45f.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>backend/dvi/mdvi-lib/dviread.c</td><td class="DESC">mdvi_dopage</td><td class="Q">1091</td><td class="Q">17</td><td><a href="report-07127e.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-07127e.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>backend/dvi/mdvi-lib/bitmap.c</td><td class="DESC">do_sample</td><td class="Q">783</td><td class="Q">40</td><td><a href="report-1730a6.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-1730a6.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>backend/dvi/mdvi-lib/util.c</td><td class="DESC">xstradd</td><td class="Q">414</td><td class="Q">5</td><td><a href="report-286a86.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-286a86.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>backend/dvi/mdvi-lib/tfmfile.c</td><td class="DESC">ofm1_load_file</td><td class="Q">349</td><td class="Q">27</td><td><a href="report-897573.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-897573.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>backend/dvi/mdvi-lib/dviread.c</td><td class="DESC">mdvi_dopage</td><td class="Q">1091</td><td class="Q">17</td><td><a href="report-e1cd80.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-e1cd80.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>backend/dvi/mdvi-lib/tfmfile.c</td><td class="DESC">tfm_load_file</td><td class="Q">247</td><td class="Q">39</td><td><a href="report-b4312f.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b4312f.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>backend/dvi/mdvi-lib/tfmfile.c</td><td class="DESC">ofm_load_file</td><td class="Q">526</td><td class="Q">32</td><td><a href="report-ef4203.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-ef4203.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>backend/dvi/mdvi-lib/bitmap.c</td><td class="DESC">mdvi_shrink_glyph_grey</td><td class="Q">1012</td><td class="Q">28</td><td><a href="report-e6a56c.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-e6a56c.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>backend/dvi/mdvi-lib/tfmfile.c</td><td class="DESC">ofm_load_file</td><td class="Q">526</td><td class="Q">32</td><td><a href="report-9cf876.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-9cf876.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>backend/dvi/mdvi-lib/util.c</td><td class="DESC">xstradd</td><td class="Q">414</td><td class="Q">5</td><td><a href="report-752fa9.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-752fa9.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>libview/ev-view.c</td><td class="DESC">ev_view_build_height_to_page_cache</td><td class="Q">379</td><td class="Q">70</td><td><a href="report-5bf78e.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-5bf78e.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>backend/dvi/mdvi-lib/bitmap.c</td><td class="DESC">mdvi_shrink_glyph_grey</td><td class="Q">1012</td><td class="Q">28</td><td><a href="report-a822af.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-a822af.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>backend/epub/epub-document.c</td><td class="DESC">in_tag</td><td class="Q">144</td><td class="Q">9</td><td><a href="report-31d12f.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-31d12f.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>backend/dvi/mdvi-lib/bitmap.c</td><td class="DESC">do_sample</td><td class="Q">783</td><td class="Q">40</td><td><a href="report-4ed84c.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-4ed84c.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>backend/epub/epub-document.c</td><td class="DESC">in_tag</td><td class="Q">144</td><td class="Q">9</td><td><a href="report-1e0c21.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-1e0c21.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>backend/dvi/mdvi-lib/dviread.c</td><td class="DESC">mdvi_run_macro</td><td class="Q">981</td><td class="Q">14</td><td><a href="report-0c1efe.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-0c1efe.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcat_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcat'</td><td>backend/dvi/mdvi-lib/util.c</td><td class="DESC">mdvi_build_path_from_cwd</td><td class="Q">340</td><td class="Q">1</td><td><a href="report-34dc30.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-34dc30.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcat_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcat'</td><td>backend/dvi/mdvi-lib/util.c</td><td class="DESC">mdvi_build_path_from_cwd</td><td class="Q">340</td><td class="Q">1</td><td><a href="report-bba387.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-bba387.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcpy_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcpy'</td><td>backend/dvi/mdvi-lib/dviread.c</td><td class="DESC">opendvi</td><td class="Q">454</td><td class="Q">1</td><td><a href="report-ce8c79.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-ce8c79.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcpy_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcpy'</td><td>backend/dvi/mdvi-lib/dviread.c</td><td class="DESC">opendvi</td><td class="Q">454</td><td class="Q">1</td><td><a href="report-35ee07.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-35ee07.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcpy_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcpy'</td><td>backend/dvi/mdvi-lib/fontmap.c</td><td class="DESC">mdvi_ps_get_metrics</td><td class="Q">1124</td><td class="Q">1</td><td><a href="report-0a5237.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-0a5237.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcpy_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcpy'</td><td>backend/dvi/mdvi-lib/fontmap.c</td><td class="DESC">mdvi_ps_get_metrics</td><td class="Q">1125</td><td class="Q">1</td><td><a href="report-dc9c65.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-dc9c65.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcpy_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcpy'</td><td>backend/dvi/mdvi-lib/dviread.c</td><td class="DESC">opendvi</td><td class="Q">453</td><td class="Q">1</td><td><a href="report-5dfd69.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-5dfd69.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcpy_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcpy'</td><td>backend/dvi/mdvi-lib/dviread.c</td><td class="DESC">opendvi</td><td class="Q">453</td><td class="Q">1</td><td><a href="report-5ad312.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-5ad312.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcpy_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcpy'</td><td>backend/dvi/mdvi-lib/fontmap.c</td><td class="DESC">mdvi_ps_get_metrics</td><td class="Q">1125</td><td class="Q">1</td><td><a href="report-6bd85c.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-6bd85c.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcpy_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcpy'</td><td>backend/dvi/mdvi-lib/fontmap.c</td><td class="DESC">mdvi_ps_get_metrics</td><td class="Q">1124</td><td class="Q">1</td><td><a href="report-575257.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-575257.html" -->
+</tr>
+<tr class="bt_logic_error_potential_unintended_use_of_sizeof_on_pointer_type"><td class="DESC">Logic error</td><td class="DESC">Potential unintended use of sizeof() on pointer type</td><td>backend/epub/epub-document.c</td><td class="DESC">setup_document_content_list</td><td class="Q">1013</td><td class="Q">1</td><td><a href="report-b9ab33.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b9ab33.html" -->
+</tr>
+<tr class="bt_logic_error_potential_unintended_use_of_sizeof_on_pointer_type"><td class="DESC">Logic error</td><td class="DESC">Potential unintended use of sizeof() on pointer type</td><td>backend/epub/epub-document.c</td><td class="DESC">setup_document_content_list</td><td class="Q">1013</td><td class="Q">1</td><td><a href="report-6e0bf2.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-6e0bf2.html" -->
+</tr>
+<tr class="bt_logic_error_result_of_operation_is_garbage_or_undefined"><td class="DESC">Logic error</td><td class="DESC">Result of operation is garbage or undefined</td><td>backend/comics/comics-document.c</td><td class="DESC">comics_document_thumbnails_get_dimensions</td><td class="Q">963</td><td class="Q">10</td><td><a href="report-bb4a13.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-bb4a13.html" -->
+</tr>
+<tr class="bt_logic_error_result_of_operation_is_garbage_or_undefined"><td class="DESC">Logic error</td><td class="DESC">Result of operation is garbage or undefined</td><td>backend/tiff/tiff-document.c</td><td class="DESC">tiff_document_thumbnails_get_dimensions</td><td class="Q">484</td><td class="Q">21</td><td><a href="report-a5df49.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-a5df49.html" -->
+</tr>
+<tr class="bt_logic_error_result_of_operation_is_garbage_or_undefined"><td class="DESC">Logic error</td><td class="DESC">Result of operation is garbage or undefined</td><td>backend/dvi/dvi-document.c</td><td class="DESC">dvi_document_do_color_special</td><td class="Q">530</td><td class="Q">18</td><td><a href="report-44df1e.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-44df1e.html" -->
+</tr>
+<tr class="bt_logic_error_result_of_operation_is_garbage_or_undefined"><td class="DESC">Logic error</td><td class="DESC">Result of operation is garbage or undefined</td><td>backend/tiff/tiff-document.c</td><td class="DESC">tiff_document_thumbnails_get_dimensions</td><td class="Q">481</td><td class="Q">19</td><td><a href="report-2adfb9.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-2adfb9.html" -->
+</tr>
+<tr class="bt_logic_error_result_of_operation_is_garbage_or_undefined"><td class="DESC">Logic error</td><td class="DESC">Result of operation is garbage or undefined</td><td>backend/comics/comics-document.c</td><td class="DESC">comics_document_thumbnails_get_dimensions</td><td class="Q">966</td><td class="Q">12</td><td><a href="report-c178c5.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-c178c5.html" -->
+</tr>
+<tr class="bt_logic_error_result_of_operation_is_garbage_or_undefined"><td class="DESC">Logic error</td><td class="DESC">Result of operation is garbage or undefined</td><td>backend/dvi/dvi-document.c</td><td class="DESC">dvi_document_do_color_special</td><td class="Q">511</td><td class="Q">14</td><td><a href="report-a8d1c0.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-a8d1c0.html" -->
+</tr>
+<tr class="bt_logic_error_result_of_operation_is_garbage_or_undefined"><td class="DESC">Logic error</td><td class="DESC">Result of operation is garbage or undefined</td><td>backend/comics/comics-document.c</td><td class="DESC">comics_document_thumbnails_get_dimensions</td><td class="Q">963</td><td class="Q">10</td><td><a href="report-e94a19.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-e94a19.html" -->
+</tr>
+<tr class="bt_logic_error_result_of_operation_is_garbage_or_undefined"><td class="DESC">Logic error</td><td class="DESC">Result of operation is garbage or undefined</td><td>backend/comics/comics-document.c</td><td class="DESC">comics_document_thumbnails_get_dimensions</td><td class="Q">966</td><td class="Q">12</td><td><a href="report-4d7f13.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-4d7f13.html" -->
+</tr>
+<tr class="bt_logic_error_result_of_operation_is_garbage_or_undefined"><td class="DESC">Logic error</td><td class="DESC">Result of operation is garbage or undefined</td><td>backend/dvi/dvi-document.c</td><td class="DESC">dvi_document_do_color_special</td><td class="Q">512</td><td class="Q">20</td><td><a href="report-1a8b66.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-1a8b66.html" -->
+</tr>
+<tr class="bt_logic_error_result_of_operation_is_garbage_or_undefined"><td class="DESC">Logic error</td><td class="DESC">Result of operation is garbage or undefined</td><td>backend/tiff/tiff-document.c</td><td class="DESC">tiff_document_thumbnails_get_dimensions</td><td class="Q">484</td><td class="Q">21</td><td><a href="report-96918c.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-96918c.html" -->
+</tr>
+<tr class="bt_logic_error_result_of_operation_is_garbage_or_undefined"><td class="DESC">Logic error</td><td class="DESC">Result of operation is garbage or undefined</td><td>backend/dvi/dvi-document.c</td><td class="DESC">dvi_document_do_color_special</td><td class="Q">530</td><td class="Q">18</td><td><a href="report-e83de3.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-e83de3.html" -->
+</tr>
+<tr class="bt_logic_error_result_of_operation_is_garbage_or_undefined"><td class="DESC">Logic error</td><td class="DESC">Result of operation is garbage or undefined</td><td>backend/dvi/dvi-document.c</td><td class="DESC">dvi_document_do_color_special</td><td class="Q">512</td><td class="Q">20</td><td><a href="report-f63ae7.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-f63ae7.html" -->
+</tr>
+<tr class="bt_logic_error_result_of_operation_is_garbage_or_undefined"><td class="DESC">Logic error</td><td class="DESC">Result of operation is garbage or undefined</td><td>backend/dvi/dvi-document.c</td><td class="DESC">dvi_document_do_color_special</td><td class="Q">511</td><td class="Q">14</td><td><a href="report-46328c.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-46328c.html" -->
+</tr>
+<tr class="bt_logic_error_result_of_operation_is_garbage_or_undefined"><td class="DESC">Logic error</td><td class="DESC">Result of operation is garbage or undefined</td><td>backend/tiff/tiff-document.c</td><td class="DESC">tiff_document_thumbnails_get_dimensions</td><td class="Q">481</td><td class="Q">19</td><td><a href="report-b61ef8.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b61ef8.html" -->
+</tr>
+<tr class="bt_logic_error_uninitialized_argument_value"><td class="DESC">Logic error</td><td class="DESC">Uninitialized argument value</td><td>backend/dvi/dvi-document.c</td><td class="DESC">dvi_document_do_color_special</td><td class="Q">521</td><td class="Q">22</td><td><a href="report-d2bf3a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-d2bf3a.html" -->
+</tr>
+<tr class="bt_logic_error_uninitialized_argument_value"><td class="DESC">Logic error</td><td class="DESC">Uninitialized argument value</td><td>backend/dvi/dvi-document.c</td><td class="DESC">dvi_document_do_color_special</td><td class="Q">521</td><td class="Q">16</td><td><a href="report-74806a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-74806a.html" -->
+</tr>
+<tr class="bt_logic_error_uninitialized_argument_value"><td class="DESC">Logic error</td><td class="DESC">Uninitialized argument value</td><td>backend/dvi/dvi-document.c</td><td class="DESC">dvi_document_do_color_special</td><td class="Q">521</td><td class="Q">22</td><td><a href="report-8f43da.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-8f43da.html" -->
+</tr>
+<tr class="bt_logic_error_uninitialized_argument_value"><td class="DESC">Logic error</td><td class="DESC">Uninitialized argument value</td><td>backend/dvi/dvi-document.c</td><td class="DESC">dvi_document_do_color_special</td><td class="Q">521</td><td class="Q">16</td><td><a href="report-5ed0bd.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-5ed0bd.html" -->
+</tr>
+<tr class="bt_dead_code_unreachable_code"><td class="DESC">Dead code</td><td class="DESC">Unreachable code</td><td>backend/dvi/mdvi-lib/dviread.c</td><td class="DESC">sort_random</td><td class="Q">362</td><td class="Q">1</td><td><a href="report-684312.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-684312.html" -->
+</tr>
+<tr class="bt_dead_code_unreachable_code"><td class="DESC">Dead code</td><td class="DESC">Unreachable code</td><td>backend/pdf/ev-poppler.cc</td><td class="DESC">pdf_document_annotations_add_annotation</td><td class="Q">2953</td><td class="Q">1</td><td><a href="report-55570c.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-55570c.html" -->
+</tr>
+<tr class="bt_dead_code_unreachable_code"><td class="DESC">Dead code</td><td class="DESC">Unreachable code</td><td>libdocument/ev-attachment.c</td><td class="DESC">ev_attachment_open</td><td class="Q">426</td><td class="Q">1</td><td><a href="report-996978.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-996978.html" -->
+</tr>
+<tr class="bt_dead_code_unreachable_code"><td class="DESC">Dead code</td><td class="DESC">Unreachable code</td><td>libview/ev-jobs.c</td><td class="DESC">ev_job_render_run</td><td class="Q">599</td><td class="Q">1</td><td><a href="report-3ab363.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-3ab363.html" -->
+</tr>
+<tr class="bt_dead_code_unreachable_code"><td class="DESC">Dead code</td><td class="DESC">Unreachable code</td><td>libview/ev-jobs.c</td><td class="DESC">ev_job_render_run</td><td class="Q">599</td><td class="Q">1</td><td><a href="report-1a29f0.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-1a29f0.html" -->
+</tr>
+<tr class="bt_dead_code_unreachable_code"><td class="DESC">Dead code</td><td class="DESC">Unreachable code</td><td>backend/epub/minizip/ioapi.c</td><td class="DESC">call_zseek64</td><td class="Q">49</td><td class="Q">1</td><td><a href="report-dfca77.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-dfca77.html" -->
+</tr>
+<tr class="bt_dead_code_unreachable_code"><td class="DESC">Dead code</td><td class="DESC">Unreachable code</td><td>backend/pdf/ev-poppler.cc</td><td class="DESC">pdf_document_file_exporter_begin</td><td class="Q">1653</td><td class="Q">1</td><td><a href="report-f86747.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-f86747.html" -->
+</tr>
+<tr class="bt_dead_code_unreachable_code"><td class="DESC">Dead code</td><td class="DESC">Unreachable code</td><td>shell/main.c</td><td class="DESC">option_version_cb</td><td class="Q">61</td><td class="Q">1</td><td><a href="report-832392.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-832392.html" -->
+</tr>
+<tr class="bt_dead_code_unreachable_code"><td class="DESC">Dead code</td><td class="DESC">Unreachable code</td><td>backend/epub/minizip/ioapi.c</td><td class="DESC">call_zseek64</td><td class="Q">49</td><td class="Q">1</td><td><a href="report-b083c5.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b083c5.html" -->
+</tr>
+<tr class="bt_dead_code_unreachable_code"><td class="DESC">Dead code</td><td class="DESC">Unreachable code</td><td>libdocument/ev-attachment.c</td><td class="DESC">ev_attachment_open</td><td class="Q">426</td><td class="Q">1</td><td><a href="report-bc30f5.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-bc30f5.html" -->
+</tr>
+<tr class="bt_dead_code_unreachable_code"><td class="DESC">Dead code</td><td class="DESC">Unreachable code</td><td>backend/pdf/ev-poppler.cc</td><td class="DESC">pdf_document_file_exporter_begin</td><td class="Q">1653</td><td class="Q">1</td><td><a href="report-c089e2.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-c089e2.html" -->
+</tr>
+<tr class="bt_dead_code_unreachable_code"><td class="DESC">Dead code</td><td class="DESC">Unreachable code</td><td>backend/dvi/mdvi-lib/dviread.c</td><td class="DESC">sort_random</td><td class="Q">362</td><td class="Q">1</td><td><a href="report-82e51b.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-82e51b.html" -->
+</tr>
+<tr class="bt_dead_code_unreachable_code"><td class="DESC">Dead code</td><td class="DESC">Unreachable code</td><td>backend/pdf/ev-poppler.cc</td><td class="DESC">pdf_document_annotations_add_annotation</td><td class="Q">2953</td><td class="Q">1</td><td><a href="report-220b4c.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-220b4c.html" -->
+</tr>
+<tr class="bt_logic_error_use_fixed_address"><td class="DESC">Logic error</td><td class="DESC">Use fixed address</td><td>backend/dvi/mdvi-lib/font.c</td><td class="DESC">font_transform_glyph</td><td class="Q">214</td><td class="Q">32</td><td><a href="report-63e73d.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-63e73d.html" -->
+</tr>
+<tr class="bt_logic_error_use_fixed_address"><td class="DESC">Logic error</td><td class="DESC">Use fixed address</td><td>backend/dvi/mdvi-lib/bitmap.c</td><td class="DESC">mdvi_shrink_box</td><td class="Q">826</td><td class="Q">5</td><td><a href="report-5e4f60.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-5e4f60.html" -->
+</tr>
+<tr class="bt_logic_error_use_fixed_address"><td class="DESC">Logic error</td><td class="DESC">Use fixed address</td><td>backend/dvi/mdvi-lib/bitmap.c</td><td class="DESC">mdvi_shrink_box</td><td class="Q">826</td><td class="Q">5</td><td><a href="report-a716bb.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-a716bb.html" -->
+</tr>
+<tr class="bt_logic_error_use_fixed_address"><td class="DESC">Logic error</td><td class="DESC">Use fixed address</td><td>backend/dvi/mdvi-lib/font.c</td><td class="DESC">font_transform_glyph</td><td class="Q">214</td><td class="Q">32</td><td><a href="report-a70ba7.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-a70ba7.html" -->
+</tr>
+<tr class="bt_logic_error_use_fixed_address"><td class="DESC">Logic error</td><td class="DESC">Use fixed address</td><td>backend/dvi/mdvi-lib/tfm.c</td><td class="DESC">tfm_font_get_glyph</td><td class="Q">211</td><td class="Q">8</td><td><a href="report-e29ef9.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-e29ef9.html" -->
+</tr>
+<tr class="bt_logic_error_use_fixed_address"><td class="DESC">Logic error</td><td class="DESC">Use fixed address</td><td>backend/dvi/mdvi-lib/tfm.c</td><td class="DESC">tfm_font_get_glyph</td><td class="Q">211</td><td class="Q">8</td><td><a href="report-4e9e47.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-4e9e47.html" -->
+</tr>
+<tr class="bt_memory_error_use_of_zero_allocated"><td class="DESC">Memory error</td><td class="DESC">Use of zero allocated</td><td>backend/dvi/mdvi-lib/util.c</td><td class="DESC">dstring_append</td><td class="Q">483</td><td class="Q">19</td><td><a href="report-7e7545.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-7e7545.html" -->
+</tr>
+<tr class="bt_memory_error_use_of_zero_allocated"><td class="DESC">Memory error</td><td class="DESC">Use of zero allocated</td><td>backend/dvi/mdvi-lib/util.c</td><td class="DESC">dstring_append</td><td class="Q">483</td><td class="Q">19</td><td><a href="report-722685.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-722685.html" -->
+</tr>
+<tr class="bt_memory_error_use_of_zero_allocated"><td class="DESC">Memory error</td><td class="DESC">Use of zero allocated</td><td>backend/dvi/mdvi-lib/util.c</td><td class="DESC">dstring_insert</td><td class="Q">526</td><td class="Q">18</td><td><a href="report-0ae9a9.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-0ae9a9.html" -->
+</tr>
+<tr class="bt_memory_error_use_of_zero_allocated"><td class="DESC">Memory error</td><td class="DESC">Use of zero allocated</td><td>backend/dvi/mdvi-lib/util.c</td><td class="DESC">dstring_insert</td><td class="Q">526</td><td class="Q">18</td><td><a href="report-edf9b4.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-edf9b4.html" -->
+</tr>
+</tbody>
+</table>
+
+</body></html>
